@@ -19,7 +19,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get upgrade -y; \
     apt-get install -y apt-utils; \
-    apt-get install -y sudo libpci3 ubuntu-drivers; \
+    apt-get install -y sudo libpci3; \
 
 # Clean up apt
     apt-get clean all; \
