@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 AS shared
+FROM ubuntu:20.04
 
 # Install default apps
 RUN export DEBIAN_FRONTEND=noninteractive; \
@@ -20,9 +20,6 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     usermod -aG sudo docker; \
     mkdir /home/docker;
 
-
-FROM shared AS drivers
-
 # Install amdgpu drivers
 ARG AMD_DRIVER=amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz
 ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
@@ -36,9 +33,6 @@ RUN echo AMD_DRIVER is $AMD_DRIVER; \
     apt-get install opencl-amdgpu-pro -y; \
     rm -rf /tmp/opencl-driver-amd;
 
-
-FROM drivers AS binary
-
 # Get Phoenix Miner
 ARG MINERV
 ENV MINERV=$MINERV
@@ -46,9 +40,6 @@ RUN curl "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases/download/
     tar xvzf PhoenixMiner_${MINERV}_Linux.tar.gz -C /home/docker; \
     mv "/home/docker/PhoenixMiner_${MINERV}_Linux" "/home/docker/phoenixminer"; \
     sudo chmod +x /home/docker/phoenixminer/PhoenixMiner;
-
-
-FROM binary AS variables
 
 # Copy latest mine.sh
 COPY mine.sh /home/docker/mine.sh
