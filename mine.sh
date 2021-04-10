@@ -43,7 +43,7 @@ if [ $DRIVERV != 0 ]; then
 	#if driver installed; then
 	./amdgpu-install --uninstall
 	#fi
-	./amdgpu-install --pro --opencl=legacy,pal --headless --no-dkms
+	./amdgpu-install --opencl=legacy,pal --headless --no-dkms
 	#apt-get install opencl-amdgpu-pro -- -y
 	rm -rf /tmp/opencl-driver-amd
 	echo ""
