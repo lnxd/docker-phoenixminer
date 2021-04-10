@@ -38,14 +38,13 @@ if [ $DRIVERV != 0 ]; then
 	echo AMD_DRIVER is $AMD_DRIVER
 	curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER
 	tar -Jxvf $AMD_DRIVER
-	ls -lh
 	rm $AMD_DRIVER
 	cd amdgpu-pro-*
 	#if driver installed; then
 	./amdgpu-install --uninstall
 	#fi
-	./amdgpu-install --opencl=legacy,pal --headless
-	apt-get install opencl-amdgpu-pro -y
+	./amdgpu-install --pro --opencl=legacy,pal --headless --no-dkms
+	#apt-get install opencl-amdgpu-pro -- -y
 	rm -rf /tmp/opencl-driver-amd
 	echo ""
 	echo "Driver installation finished."
