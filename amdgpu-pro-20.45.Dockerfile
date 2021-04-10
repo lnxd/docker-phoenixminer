@@ -1,28 +1,19 @@
 FROM ubuntu:20.04
 
-# Build time variables
-ENV MINERV=5.5c
-ARG AMD_DRIVER=amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz
-ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
-
 # Install default apps
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get upgrade -y; \
     apt-get install -y apt-utils; \
     apt-get install -y curl sudo libpci3 xz-utils; \
-
 # Clean up apt
     apt-get clean all; \
-
 # Set timezone
     ln -fs /usr/share/zoneinfo/Australia/Melbourne /etc/localtime; \
     apt-get install -y tzdata; \
     dpkg-reconfigure --frontend noninteractive tzdata; \
-
 # Prevent error messages when running sudo
     echo "Set disable_coredump false" >> /etc/sudo.conf; \
-
 # Create user account
     useradd docker; \
     echo 'docker:docker' | sudo chpasswd; \
@@ -30,6 +21,8 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     mkdir /home/docker;
 
 # Install amdgpu drivers
+ARG AMD_DRIVER=amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz
+ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
 RUN mkdir -p /tmp/opencl-driver-amd
 WORKDIR /tmp/opencl-driver-amd
 RUN echo AMD_DRIVER is $AMD_DRIVER; \
@@ -41,14 +34,18 @@ RUN echo AMD_DRIVER is $AMD_DRIVER; \
     rm -rf /tmp/opencl-driver-amd;
 
 # Get Phoenix Miner
+ARG MINERV=5.5c
+ENV MINERV=$MINERV
 RUN curl "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases/download/${MINERV}/PhoenixMiner_${MINERV}_Linux.tar.gz" -L -o "PhoenixMiner_${MINERV}_Linux.tar.gz"; \
     tar xvzf PhoenixMiner_${MINERV}_Linux.tar.gz -C /home/docker; \
     mv "/home/docker/PhoenixMiner_${MINERV}_Linux" "/home/docker/phoenixminer"; \
     sudo chmod +x /home/docker/phoenixminer/PhoenixMiner;
 
-# Copy latest mine.sh
+# Copy latest scripts
+COPY start.sh /home/docker/start.sh
 COPY mine.sh /home/docker/mine.sh
-RUN sudo chmod +x /home/docker/mine.sh
+RUN sudo chmod +x /home/docker/start.sh; \
+    sudo chmod +x /home/docker/mine.sh;
 
 # Set environment variables.
 ENV BASE="Ubuntu 20.04"
@@ -67,4 +64,4 @@ ENV ADDITIONAL=" "
 WORKDIR /home/docker/
 
 # Define default command.
-CMD ["./mine.sh"]
+CMD ["./start.sh"]
