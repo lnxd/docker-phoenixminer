@@ -9,7 +9,7 @@ echo ""
 echo "Wallet:  $WALLET"
 echo "Pool:    $POOL"
 echo ""
-echo "Starting PhoenixMiner $MINERV with the following arguments:"
+echo "Starting PhoenixMiner $MINERV as $(id) with the following arguments:"
 echo "-pool $POOL -wal $WALLET.$PASSWORD -tt $TT  -tstop $TSTOP -tstart $TSTART -cdm 1 -cdmport 5450 $ADDITIONAL"
 echo ""
 cd /home/docker/phoenixminer
