@@ -36,7 +36,7 @@ if [ $DRIVERV != 0 ]; then
 	tar -Jxvf $AMD_DRIVER; \
 	cd amdgpu-pro-*; \
 	#if driver installed; then
-	./amdgpu-pro-install --uninstall; \
+	./amdgpu-install --uninstall; \
 	#fi
 	./amdgpu-install --opencl=legacy,pal --no-dkms --headless; \
 	apt-get install opencl-amdgpu-pro -y; \
