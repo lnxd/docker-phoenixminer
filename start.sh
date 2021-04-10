@@ -7,7 +7,7 @@ term_handler() {
 }
 
 trap 'kill ${!}; term_handler' SIGTERM
-/home/docker/mine.sh &
+su ${USER} -c "/home/docker/mine.sh" &
 killpid="$!"
 while true
 do
