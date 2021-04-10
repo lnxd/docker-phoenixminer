@@ -69,4 +69,4 @@ ENV ADDITIONAL=" "
 WORKDIR /home/docker/
 
 # Define default command.
-CMD ["./start.sh"]
+CMD ["./mine.sh"]
