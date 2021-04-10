@@ -1,5 +1,48 @@
 #!/bin/bash
 
+DRIVERV=20.20
+
+echo "Installing AMD drivers v${DRIVERV}:"
+echo ""
+
+case $DRIVERV in
+
+  0)
+    echo "Skipping installation!"
+    ;;
+
+  18.20)
+    AMD_DRIVER=amdgpu-pro-18.20-621984.tar.xz
+    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux/ubuntu-18-04
+    ;;
+
+  20.20)
+    AMD_DRIVER=amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz
+    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
+    ;;
+
+  20.20)
+    AMD_DRIVER=amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz
+    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
+    ;;
+esac
+
+if [ $DRIVERV != 0 ]; then
+	mkdir -p /tmp/opencl-driver-amd
+	cd /tmp/opencl-driver-amd
+	echo AMD_DRIVER is $AMD_DRIVER; \
+	curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER; \
+	tar -Jxvf $AMD_DRIVER; \
+	cd amdgpu-pro-*; \
+	./amdgpu-install; \
+	apt-get install opencl-amdgpu-pro -y; \
+	rm -rf /tmp/opencl-driver-amd
+	echo ""
+	echo "Driver installation finished."
+else
+  echo ""
+fi
+
 echo "Project: PhoenixMiner $MINERV"
 echo "Author:  lnxd"
 echo "Base:    $BASE"
