@@ -34,7 +34,7 @@ RUN echo AMD_DRIVER is $AMD_DRIVER; \
     rm -rf /tmp/opencl-driver-amd;
 
 # Get Phoenix Miner
-ARG MINERV
+ARG MINERV=5.5c
 ENV MINERV=$MINERV
 RUN curl "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases/download/${MINERV}/PhoenixMiner_${MINERV}_Linux.tar.gz" -L -o "PhoenixMiner_${MINERV}_Linux.tar.gz"; \
     tar xvzf PhoenixMiner_${MINERV}_Linux.tar.gz -C /home/docker; \
