@@ -1,3 +1,5 @@
+#!/bin/bash
+
 term_handler() {
 	kill -SIGTERM "$killpid"
 	wait "$killpid" -f 2>/dev/null
@@ -5,7 +7,7 @@ term_handler() {
 }
 
 trap 'kill ${!}; term_handler' SIGTERM
-su -c "/opt/scripts/start-server.sh" &
+/home/docker/mine.sh &
 killpid="$!"
 while true
 do
