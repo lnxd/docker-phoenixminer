@@ -41,9 +41,11 @@ RUN curl "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases/download/
     mv "/home/docker/PhoenixMiner_${MINERV}_Linux" "/home/docker/phoenixminer"; \
     sudo chmod +x /home/docker/phoenixminer/PhoenixMiner;
 
-# Copy latest mine.sh
+# Copy latest scripts
+COPY start.sh /home/docker/start.sh
 COPY mine.sh /home/docker/mine.sh
-RUN sudo chmod +x /home/docker/mine.sh
+RUN sudo chmod +x /home/docker/start.sh; \
+    sudo chmod +x /home/docker/mine.sh;
 
 # Set environment variables.
 ENV BASE="Ubuntu 20.04"
@@ -62,4 +64,4 @@ ENV ADDITIONAL=" "
 WORKDIR /home/docker/
 
 # Define default command.
-CMD ["./mine.sh"]
+CMD ["./start.sh"]
