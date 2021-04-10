@@ -6,6 +6,10 @@ INSTALLED_DRIVERV=$(apt show amdgpu-pro 2>/dev/null | grep Version | sed 's/Vers
 echo "Installing AMD drivers v${DRIVERV}:"
 echo ""
 
+#Force yes apt
+echo 'APT::Get::Assume-Yes "true";
+APT::Get::force-yes "true";'>> /etc/apt/apt.conf.d/90forceyes
+
 case $DRIVERV in
 
   0)
