@@ -2,7 +2,7 @@
 
 DRIVERV=20.20
 INSTALLED_DRIVERV=$(apt show amdgpu-pro 2>/dev/null | grep Version | sed 's/Version: //g')
-if [ $INSTALLED_DRIVERV = "" ]; then
+if [[ $INSTALLED_DRIVERV == *"${DRIVERV}"* ]]; then
 	echo "Installing AMD drivers v${DRIVERV}:"
 	echo ""
 
