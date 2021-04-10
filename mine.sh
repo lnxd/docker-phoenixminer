@@ -31,15 +31,16 @@ esac
 if [ $DRIVERV != 0 ]; then
 	mkdir -p /tmp/opencl-driver-amd
 	cd /tmp/opencl-driver-amd
-	echo AMD_DRIVER is $AMD_DRIVER; \
-	curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER; \
-	tar -Jxvf $AMD_DRIVER; \
-	cd amdgpu-pro-*; \
+	echo AMD_DRIVER is $AMD_DRIVER
+	curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER
+	tar -Jxvf $AMD_DRIVER
+	ls -lh
+	cd amdgpu-pro-*
 	#if driver installed; then
-	./amdgpu-install --uninstall; \
+	./amdgpu-install --uninstall
 	#fi
-	./amdgpu-install --opencl=legacy,pal --no-dkms --headless; \
-	apt-get install opencl-amdgpu-pro -y; \
+	./amdgpu-install --opencl=legacy,pal --no-dkms --headless
+	apt-get install opencl-amdgpu-pro -y
 	rm -rf /tmp/opencl-driver-amd
 	echo ""
 	echo "Driver installation finished."
