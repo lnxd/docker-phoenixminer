@@ -55,10 +55,10 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 
 	rm /etc/apt/apt.conf.d/90assumeyes
 fi
-apt-get install -y clinfo
 
 echo ""
-clinfo
+cd /home/docker/phoenixminer
+./PhoenixMiner -list
 echo ""
 
 echo "Project: PhoenixMiner $MINERV"
