@@ -2,9 +2,7 @@
 uninstall_amd_driver() {
 	echo "Uninstalling driver"
 	echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes
-    if test -f "/usr/bin/amdgpu-uninstall"; then
-        /usr/bin/amdgpu-uninstall
-    fi
+    /usr/bin/amdgpu-uninstall
 	rm /etc/apt/apt.conf.d/90assumeyes
     echo "Done!"
 }
