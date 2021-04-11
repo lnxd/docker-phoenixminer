@@ -3,6 +3,7 @@
 DRIVERV=20.20
 INSTALLED_DRIVERV=$(apt show amdgpu-pro 2>/dev/null | grep Version | sed 's/Version: //g')
 if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
+	echo "Installed driver version (${INSTALLED_DRIVERV}) does not match wanted driver version (${DRIVERV})"
 	echo "Installing AMD drivers v${DRIVERV}:"
 	echo ""
 
@@ -25,7 +26,7 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 	    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
 	    ;;
 
-	  20.20)
+	  20.45)
 	    AMD_DRIVER=amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz
 	    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
 	    ;;
