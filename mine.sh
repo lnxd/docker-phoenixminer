@@ -1,4 +1,13 @@
 #!/bin/bash
+uninstall_amd_driver() {
+	echo "Uninstalling driver"
+    if test -f "/usr/bin/amdgpu-uninstall"; then
+        /usr/bin/amdgpu-uninstall
+    fi
+    echo "Done!"
+}
+
+
 
 INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
 if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
@@ -12,10 +21,12 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 	case $DRIVERV in
 
 	  0)
+        uninstall_amd_driver
 	    echo "Skipping installation"
 	    ;;
 
 	  18.20)
+        uninstall_amd_driver
 	    AMD_DRIVER=amdgpu-pro-18.20-621984.tar.xz
 	    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux/ubuntu-18-04
 		mkdir -p /tmp/opencl-driver-amd
@@ -25,9 +36,6 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 		tar -Jxvf $AMD_DRIVER
 		rm $AMD_DRIVER
 		cd amdgpu-pro-*
-		#if driver installed; then
-		./amdgpu-install --uninstall
-		#fi
 		./amdgpu-install --opencl=legacy,pal --headless
 		rm -rf /tmp/opencl-driver-amd
 		echo ""
@@ -36,6 +44,7 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 	    ;;
 
 	  20.20)
+        uninstall_amd_driver
 	    AMD_DRIVER=amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz
 	    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
 		mkdir -p /tmp/opencl-driver-amd
@@ -45,9 +54,6 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 		tar -Jxvf $AMD_DRIVER
 		rm $AMD_DRIVER
 		cd amdgpu-pro-*
-		#if driver installed; then
-		./amdgpu-install --uninstall
-		#fi
 		./amdgpu-install --opencl=legacy,pal --headless --no-dkms
 		rm -rf /tmp/opencl-driver-amd
 		echo ""
@@ -56,6 +62,7 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 	    ;;
 
 	  20.45)
+        uninstall_amd_driver
 	    AMD_DRIVER=amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz
 	    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
 		mkdir -p /tmp/opencl-driver-amd
@@ -65,9 +72,6 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 		tar -Jxvf $AMD_DRIVER
 		rm $AMD_DRIVER
 		cd amdgpu-pro-*
-		#if driver installed; then
-		./amdgpu-install --uninstall
-		#fi
 		./amdgpu-install --opencl=legacy,pal --headless --no-dkms
 		rm -rf /tmp/opencl-driver-amd
 		echo ""
