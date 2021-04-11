@@ -20,6 +20,19 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     usermod -aG sudo docker; \
     mkdir /home/docker;
 
+# Install default AMD Drivers
+ARG AMD_DRIVER=amdgpu-pro-18.20-621984.tar.xz
+ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux/ubuntu-18-04
+RUN mkdir -p /tmp/opencl-driver-amd
+WORKDIR /tmp/opencl-driver-amd
+RUN echo AMD_DRIVER is $AMD_DRIVER; \
+    curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER; \
+    tar -Jxvf $AMD_DRIVER; \
+    rm $AMD_DRIVER; \
+    cd amdgpu-pro-*; \
+    ./amdgpu-install --opencl=legacy,pal --headless --no-dkms; \
+    rm -rf /tmp/opencl-driver-amd;
+
 # Get Phoenix Miner
 ARG MINERV=5.5c
 ENV MINERV=$MINERV
