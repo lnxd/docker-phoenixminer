@@ -33,6 +33,7 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 	esac
 
 	if [ $DRIVERV != 0 ]; then
+		APT=apt-get
 		mkdir -p /tmp/opencl-driver-amd
 		cd /tmp/opencl-driver-amd
 		echo AMD_DRIVER is $AMD_DRIVER
@@ -54,6 +55,7 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 
 	rm /etc/apt/apt.conf.d/90assumeyes
 fi
+apt-get install -y glxinfo
 
 echo ""
 glxinfo
