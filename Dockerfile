@@ -25,13 +25,15 @@ ARG AMD_DRIVER=amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz
 ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
 RUN mkdir -p /tmp/opencl-driver-amd
 WORKDIR /tmp/opencl-driver-amd
-RUN echo AMD_DRIVER is $AMD_DRIVER; \
+RUN echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes; \
+    echo AMD_DRIVER is $AMD_DRIVER; \
     curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER; \
     tar -Jxvf $AMD_DRIVER; \
     rm $AMD_DRIVER; \
     cd amdgpu-pro-*; \
     ./amdgpu-install --opencl=legacy,pal --headless --no-dkms; \
-    rm -rf /tmp/opencl-driver-amd;
+    rm -rf /tmp/opencl-driver-amd; \
+    rm /etc/apt/apt.conf.d/90assumeyes;
 
 # Get Phoenix Miner
 ARG MINERV=5.5c
