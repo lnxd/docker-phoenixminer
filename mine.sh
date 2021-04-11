@@ -1,10 +1,10 @@
 #!/bin/bash
 uninstall_amd_driver() {
 	echo "Uninstalling driver"
-	echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes
-    /usr/bin/amdgpu-uninstall
+	echo 'APT::Get::Assume-Yes "true";' >>/etc/apt/apt.conf.d/90assumeyes
+	/usr/bin/amdgpu-uninstall
 	rm /etc/apt/apt.conf.d/90assumeyes
-    echo "Done!"
+	echo "Done!"
 }
 
 install_amd_driver() {
@@ -13,7 +13,7 @@ install_amd_driver() {
 	FLAGS=$3
 	echo "Installing driver"
 	echo "Downloading driver from "$AMD_DRIVER_URL/$AMD_DRIVER
-	echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes
+	echo 'APT::Get::Assume-Yes "true";' >>/etc/apt/apt.conf.d/90assumeyes
 	mkdir -p /tmp/opencl-driver-amd
 	cd /tmp/opencl-driver-amd
 	echo AMD_DRIVER is $AMD_DRIVER
@@ -37,30 +37,30 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 
 	case $DRIVERV in
 
-	  0)
-        uninstall_amd_driver
-	    echo "Skipping installation"
-	    ;;
+	0)
+		uninstall_amd_driver
+		echo "Skipping installation"
+		;;
 
-	  18.20)
-        uninstall_amd_driver
-	    install_amd_driver "amdgpu-pro-18.20-621984.tar.xz" "https://drivers.amd.com/drivers/linux/ubuntu-18-04" "--opencl=legacy,pal --headless"
-	    ;;
+	18.20)
+		uninstall_amd_driver
+		install_amd_driver "amdgpu-pro-18.20-621984.tar.xz" "https://drivers.amd.com/drivers/linux/ubuntu-18-04" "--opencl=legacy,pal --headless"
+		;;
 
-	  20.20)
-        uninstall_amd_driver
-	    install_amd_driver "amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless --no-dkms"
-	    ;;
+	20.20)
+		uninstall_amd_driver
+		install_amd_driver "amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless --no-dkms"
+		;;
 
-	  20.45)
-        uninstall_amd_driver
-	    install_amd_driver "amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless --no-dkms"
-	    ;;
+	20.45)
+		uninstall_amd_driver
+		install_amd_driver "amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless --no-dkms"
+		;;
 
-	  20.50)
-        uninstall_amd_driver
-	    install_amd_driver "amdgpu-pro-20.50-1234664-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,rocr --headless --no-dkms"
-	    ;;
+	20.50)
+		uninstall_amd_driver
+		install_amd_driver "amdgpu-pro-20.50-1234664-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,rocr --headless --no-dkms"
+		;;
 	esac
 
 fi
@@ -78,4 +78,4 @@ echo "Starting PhoenixMiner $MINERV as $(id) with the following arguments:"
 echo "-pool $POOL -wal $WALLET.$PASSWORD -tt $TT  -tstop $TSTOP -tstart $TSTART -cdm 1 -cdmport 5450 $ADDITIONAL"
 echo ""
 cd /home/docker/phoenixminer
-./PhoenixMiner -pool $POOL -wal $WALLET.$PASSWORD -tt $TT  -tstop $TSTOP -tstart $TSTART -cdm 1 -cdmport 5450 $ADDITIONAL
+./PhoenixMiner -pool $POOL -wal $WALLET.$PASSWORD -tt $TT -tstop $TSTOP -tstart $TSTART -cdm 1 -cdmport 5450 $ADDITIONAL
