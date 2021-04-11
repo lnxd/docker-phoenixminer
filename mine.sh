@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DRIVERV=20.20
-INSTALLED_DRIVERV=$(apt show amdgpu 2>/dev/null | grep Version | sed 's/Version: //g')
+INSTALLED_DRIVERV=20.20 #$(apt show amdgpu 2>/dev/null | grep Version | sed 's/Version: //g')
 if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 	echo "Installed driver version (${INSTALLED_DRIVERV}) does not match wanted driver version (${DRIVERV})"
 	echo "Installing AMD drivers v${DRIVERV}:"
