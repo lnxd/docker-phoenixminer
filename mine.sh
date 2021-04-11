@@ -12,27 +12,32 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 	case $DRIVERV in
 
 	  0)
-	    echo "Skipping installation!"
+	    echo "Skipping installation"
 	    ;;
 
 	  18.20)
 	    AMD_DRIVER=amdgpu-pro-18.20-621984.tar.xz
 	    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux/ubuntu-18-04
+		mkdir -p /tmp/opencl-driver-amd
+		cd /tmp/opencl-driver-amd
+		echo AMD_DRIVER is $AMD_DRIVER
+		curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER
+		tar -Jxvf $AMD_DRIVER
+		rm $AMD_DRIVER
+		cd amdgpu-pro-*
+		#if driver installed; then
+		./amdgpu-install --uninstall
+		#fi
+		./amdgpu-install --opencl=legacy,pal --headless
+		rm -rf /tmp/opencl-driver-amd
+		echo ""
+		echo "Driver installation finished."
+		INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
 	    ;;
 
 	  20.20)
 	    AMD_DRIVER=amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz
 	    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
-	    ;;
-
-	  20.45)
-	    AMD_DRIVER=amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz
-	    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
-	    ;;
-	esac
-
-	if [ $DRIVERV != 0 ]; then
-		APT=apt-get
 		mkdir -p /tmp/opencl-driver-amd
 		cd /tmp/opencl-driver-amd
 		echo AMD_DRIVER is $AMD_DRIVER
@@ -48,9 +53,29 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 		echo ""
 		echo "Driver installation finished."
 		INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
-	else
-	  echo ""
-	fi
+	    ;;
+
+	  20.45)
+	    AMD_DRIVER=amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz
+	    AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
+		mkdir -p /tmp/opencl-driver-amd
+		cd /tmp/opencl-driver-amd
+		echo AMD_DRIVER is $AMD_DRIVER
+		curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER
+		tar -Jxvf $AMD_DRIVER
+		rm $AMD_DRIVER
+		cd amdgpu-pro-*
+		#if driver installed; then
+		./amdgpu-install --uninstall
+		#fi
+		./amdgpu-install --opencl=legacy,pal --headless --no-dkms
+		rm -rf /tmp/opencl-driver-amd
+		echo ""
+		echo "Driver installation finished."
+		INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
+
+	    ;;
+	esac
 
 	rm /etc/apt/apt.conf.d/90assumeyes
 fi
