@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DRIVERV=20.20
-INSTALLED_DRIVERV=$(sh -c "cd; cd - && cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep "OpenCL driver version" | sed 's/OpenCL driver version: //g'" | cut -c1-5)
+INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
 if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 	echo "Installed driver version (${INSTALLED_DRIVERV}) does not match wanted driver version (${DRIVERV})"
 	echo "Installing AMD drivers v${DRIVERV}:"
@@ -48,7 +48,7 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 		rm -rf /tmp/opencl-driver-amd
 		echo ""
 		echo "Driver installation finished."
-		INSTALLED_DRIVERV=$(sh -c "cd; cd - && cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep "OpenCL driver version" | sed 's/OpenCL driver version: //g'" | cut -c1-5)
+		INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
 	else
 	  echo ""
 	fi
