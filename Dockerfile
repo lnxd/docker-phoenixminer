@@ -21,8 +21,8 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     mkdir /home/docker;
 
 # Install default AMD Drivers
-ARG AMD_DRIVER=amdgpu-pro-18.20-621984.tar.xz
-ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux/ubuntu-18-04
+ARG AMD_DRIVER=amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz
+ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
 RUN mkdir -p /tmp/opencl-driver-amd
 WORKDIR /tmp/opencl-driver-amd
 RUN echo AMD_DRIVER is $AMD_DRIVER; \
