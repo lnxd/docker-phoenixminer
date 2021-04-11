@@ -57,8 +57,7 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 fi
 
 echo ""
-cd /home/docker/phoenixminer
-./PhoenixMiner -list
+./home/docker/phoenixminer/PhoenixMiner -list | grep OpenCL driver version
 echo ""
 
 echo "Project: PhoenixMiner $MINERV"
