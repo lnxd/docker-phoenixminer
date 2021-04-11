@@ -2,7 +2,7 @@
 
 DRIVERV=20.20
 INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
-if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
+if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 	echo "Installed driver version (${INSTALLED_DRIVERV}) does not match wanted driver version (${DRIVERV})"
 	echo "Installing AMD drivers v${DRIVERV}:"
 	echo ""
