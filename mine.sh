@@ -8,7 +8,7 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 	echo ""
 
 	#Assume yes apt
-	echo 'APT::Get::Assume-Yes "true"'>> /etc/apt/apt.conf.d/90assumeyes
+	echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes
 
 	case $DRIVERV in
 
