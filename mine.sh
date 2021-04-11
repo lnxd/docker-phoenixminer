@@ -12,6 +12,7 @@ install_amd_driver() {
 	AMD_DRIVER_URL=$2
 	FLAGS=$3
 	echo "Installing driver"
+	echo "Downloading driver from "$AMD_DRIVER_URL/$AMD_DRIVER
 	echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes
 	mkdir -p /tmp/opencl-driver-amd
 	cd /tmp/opencl-driver-amd
