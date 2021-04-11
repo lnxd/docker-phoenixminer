@@ -55,7 +55,7 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 
 	rm /etc/apt/apt.conf.d/90assumeyes
 fi
-apt-get install -y glxinfo
+apt-get install -y mesa-utils
 
 echo ""
 glxinfo
