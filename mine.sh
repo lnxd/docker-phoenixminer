@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DRIVERV=20.20
-INSTALLED_DRIVERV=$(apt show amdgpu-pro 2>/dev/null | grep Version | sed 's/Version: //g')
+INSTALLED_DRIVERV=$(apt show amdgpu 2>/dev/null | grep Version | sed 's/Version: //g')
 if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 	echo "Installed driver version (${INSTALLED_DRIVERV}) does not match wanted driver version (${DRIVERV})"
 	echo "Installing AMD drivers v${DRIVERV}:"
@@ -47,7 +47,7 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 		rm -rf /tmp/opencl-driver-amd
 		echo ""
 		echo "Driver installation finished."
-		INSTALLED_DRIVERV=$(apt show amdgpu-pro 2>/dev/null | grep Version | sed 's/Version: //g')
+		INSTALLED_DRIVERV=$(apt show amdgpu 2>/dev/null | grep Version | sed 's/Version: //g')
 	else
 	  echo ""
 	fi
