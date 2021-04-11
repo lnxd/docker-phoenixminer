@@ -55,10 +55,10 @@ if [[ $INSTALLED_DRIVERV != "${DRIVERV}"* ]]; then
 
 	rm /etc/apt/apt.conf.d/90assumeyes
 fi
-apt-get install -y mesa-utils
+apt-get install -y clinfo
 
 echo ""
-glxinfo
+clinfo
 echo ""
 
 echo "Project: PhoenixMiner $MINERV"
