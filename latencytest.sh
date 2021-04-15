@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Running tests, this will take approximately 3m51s to complete"
+echo "Running tests, this will take approximately 4m2s to complete"
 
 EA1=us1.ethermine.org
 EA2=us2.ethermine.org
