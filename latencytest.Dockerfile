@@ -19,9 +19,12 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8
 
 COPY --from=stratum-ping-builder /home/docker/stratum-ping/main /home/docker/stratum-ping
+COPY start.sh /home/docker/start.sh
 COPY latencytest.sh /home/docker/latencytest.sh
-RUN chmod +x /home/docker/latencytest.sh; \
+RUN sed -i -e "s/mine.sh/latencytest.sh/" /home/docker/start.sh; \
+    chmod +x /home/docker/start.sh /home/docker/latencytest.sh ; \
     apt-get update && apt-get install -y curl dig jq && apt-get clean all;
+
 WORKDIR /home/docker
 
 CMD ["./latencytest.sh"] 
