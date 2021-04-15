@@ -12,9 +12,9 @@ NA4=eth-eu2.nanopool.org
 NA5=eth-asia1.nanopool.org
 NA6=eth-jp1.nanopool.org
 NA7=eth-au1.nanopool.org
-TA1=eth-asia1.nanopool.org
-TA2=eth-jp1.nanopool.org
-TA3=eth-au1.nanopool.org
+TA1=eth.2miners.com
+TA2=us-eth.2miners.com
+TA3=asia-eth.2miners.com
 
 EI1=$(./stratum-ping -c 1 ${EA1}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 EI2=$(./stratum-ping -c 1 ${EA2}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
