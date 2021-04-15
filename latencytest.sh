@@ -1,10 +1,10 @@
 #!/bin/bash
-echo "Running tests, this will take approximately 4m2s to complete"
+echo "Running tests, this should take somewhere between 4:02-11:37 minutes to complete during which there will be no output."
 
 COUNT=10
 TIMEOUT=30
 
-# List of all pool addresses
+# List of all pool addresses tested by this script
 EA1=us1.ethermine.org
 EA2=us2.ethermine.org
 EA3=asia1.ethermine.org
@@ -52,7 +52,7 @@ FI6=$(timeout ${TIMEOUT} ./stratum-ping -c 1 ${FA6}:4444 | grep PING | sed -e "s
 FI7=$(timeout ${TIMEOUT} ./stratum-ping -c 1 ${FA7}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 HI1=$(timeout ${TIMEOUT} ./stratum-ping -c 1 ${HA1}:3939 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 
-# Get geolocation of IP
+# Get geolocation of IP, https not available for free with this API
 EC1=$(curl -s http://ip-api.com/json/${EI1}?fields=country | jq -r '.country')
 EC2=$(curl -s http://ip-api.com/json/${EI2}?fields=country | jq -r '.country')
 EC3=$(curl -s http://ip-api.com/json/${EI3}?fields=country | jq -r '.country')
