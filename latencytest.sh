@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "Running tests, this will take approximately 4m2s to complete"
 
+# List of all pool addresses
 EA1=us1.ethermine.org
 EA2=us2.ethermine.org
 EA3=asia1.ethermine.org
@@ -24,6 +25,7 @@ FA6=eth-au.flexpool.io
 FA7=eth-br.flexpool.io
 HA1=eth.ethashpool.com
 
+# Get IP used for mining
 EI1=$(./stratum-ping -c 1 ${EA1}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 EI2=$(./stratum-ping -c 1 ${EA2}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 EI3=$(./stratum-ping -c 1 ${EA3}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
@@ -47,6 +49,7 @@ FI6=$(./stratum-ping -c 1 ${FA6}:4444 | grep PING | sed -e "s/).*//" | sed -e "s
 FI7=$(./stratum-ping -c 1 ${FA7}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 HI1=$(./stratum-ping -c 1 ${HA1}:3939 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 
+# Get geolocation of IP
 EC1=$(curl -s http://ip-api.com/json/${EI1}?fields=country | jq -r '.country')
 EC2=$(curl -s http://ip-api.com/json/${EI2}?fields=country | jq -r '.country')
 EC3=$(curl -s http://ip-api.com/json/${EI3}?fields=country | jq -r '.country')
@@ -70,6 +73,7 @@ FC6=$(curl -s http://ip-api.com/json/${FI6}?fields=country | jq -r '.country')
 FC7=$(curl -s http://ip-api.com/json/${FI7}?fields=country | jq -r '.country')
 HC1=$(curl -s http://ip-api.com/json/${HI1}?fields=country | jq -r '.country')
 
+# Calculate mining ping using 2miners/stratum-ping
 ER1=$(./stratum-ping -c 10 ${EA1}:4444 | tail -1 | awk '{print $4}')
 ER2=$(./stratum-ping -c 10 ${EA2}:4444 | tail -1 | awk '{print $4}')
 ER3=$(./stratum-ping -c 10 ${EA3}:4444 | tail -1 | awk '{print $4}')
@@ -93,6 +97,7 @@ FR6=$(./stratum-ping -c 10 ${FA6}:9999 | tail -1 | awk '{print $4}')
 FR7=$(./stratum-ping -c 10 ${FA7}:9999 | tail -1 | awk '{print $4}')
 HR1=$(./stratum-ping -c 10 ${HA1}:3939 | tail -1 | awk '{print $4}')
 
+# Echo results in table
 echo ""
 printf "%-12s %-15s %-15s %-18s %-30s\n" "Pool" "Geo" "Latency" "IP" "Address"
 POOL=Ethermine
