@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "Running tests, this will take approximately 4m2s to complete"
 
+COUNT=5
+
 # List of all pool addresses
 EA1=us1.ethermine.org
 EA2=us2.ethermine.org
@@ -74,28 +76,28 @@ FC7=$(curl -s http://ip-api.com/json/${FI7}?fields=country | jq -r '.country')
 HC1=$(curl -s http://ip-api.com/json/${HI1}?fields=country | jq -r '.country')
 
 # Calculate mining ping using 2miners/stratum-ping
-ER1=$(./stratum-ping -c 5 ${EA1}:4444 | tail -1 | awk '{print $4}')
-ER2=$(./stratum-ping -c 5 ${EA2}:4444 | tail -1 | awk '{print $4}')
-ER3=$(./stratum-ping -c 5 ${EA3}:4444 | tail -1 | awk '{print $4}')
-ER4=$(./stratum-ping -c 5 ${EA4}:4444 | tail -1 | awk '{print $4}')
-NR1=$(./stratum-ping -c 5 ${NA1}:9999 | tail -1 | awk '{print $4}')
-NR2=$(./stratum-ping -c 5 ${NA2}:9999 | tail -1 | awk '{print $4}')
-NR3=$(./stratum-ping -c 5 ${NA3}:9999 | tail -1 | awk '{print $4}')
-NR4=$(./stratum-ping -c 5 ${NA4}:9999 | tail -1 | awk '{print $4}')
-NR5=$(./stratum-ping -c 5 ${NA5}:9999 | tail -1 | awk '{print $4}')
-NR6=$(./stratum-ping -c 5 ${NA6}:9999 | tail -1 | awk '{print $4}')
-NR7=$(./stratum-ping -c 5 ${NA7}:9999 | tail -1 | awk '{print $4}')
-TR1=$(./stratum-ping -c 5 ${TA1}:2020 | tail -1 | awk '{print $4}')
-TR2=$(./stratum-ping -c 5 ${TA2}:2020 | tail -1 | awk '{print $4}')
-TR3=$(./stratum-ping -c 5 ${TA3}:2020 | tail -1 | awk '{print $4}')
-FR1=$(./stratum-ping -c 5 ${FA1}:9999 | tail -1 | awk '{print $4}')
-FR2=$(./stratum-ping -c 5 ${FA2}:9999 | tail -1 | awk '{print $4}')
-FR3=$(./stratum-ping -c 5 ${FA3}:9999 | tail -1 | awk '{print $4}')
-FR4=$(./stratum-ping -c 5 ${FA4}:9999 | tail -1 | awk '{print $4}')
-FR5=$(./stratum-ping -c 5 ${FA5}:9999 | tail -1 | awk '{print $4}')
-FR6=$(./stratum-ping -c 5 ${FA6}:9999 | tail -1 | awk '{print $4}')
-FR7=$(./stratum-ping -c 5 ${FA7}:9999 | tail -1 | awk '{print $4}')
-HR1=$(./stratum-ping -c 5 ${HA1}:3939 | tail -1 | awk '{print $4}')
+ER1=$(./stratum-ping -c ${COUNT} ${EI1}:4444 | tail -1 | awk '{print $4}')
+ER2=$(./stratum-ping -c ${COUNT} ${EI2}:4444 | tail -1 | awk '{print $4}')
+ER3=$(./stratum-ping -c ${COUNT} ${EI3}:4444 | tail -1 | awk '{print $4}')
+ER4=$(./stratum-ping -c ${COUNT} ${EI4}:4444 | tail -1 | awk '{print $4}')
+NR1=$(./stratum-ping -c ${COUNT} ${NI1}:9999 | tail -1 | awk '{print $4}')
+NR2=$(./stratum-ping -c ${COUNT} ${NI2}:9999 | tail -1 | awk '{print $4}')
+NR3=$(./stratum-ping -c ${COUNT} ${NI3}:9999 | tail -1 | awk '{print $4}')
+NR4=$(./stratum-ping -c ${COUNT} ${NI4}:9999 | tail -1 | awk '{print $4}')
+NR5=$(./stratum-ping -c ${COUNT} ${NI5}:9999 | tail -1 | awk '{print $4}')
+NR6=$(./stratum-ping -c ${COUNT} ${NI6}:9999 | tail -1 | awk '{print $4}')
+NR7=$(./stratum-ping -c ${COUNT} ${NI7}:9999 | tail -1 | awk '{print $4}')
+TR1=$(./stratum-ping -c ${COUNT} ${TI1}:2020 | tail -1 | awk '{print $4}')
+TR2=$(./stratum-ping -c ${COUNT} ${TI2}:2020 | tail -1 | awk '{print $4}')
+TR3=$(./stratum-ping -c ${COUNT} ${TI3}:2020 | tail -1 | awk '{print $4}')
+FR1=$(./stratum-ping -c ${COUNT} ${FI1}:9999 | tail -1 | awk '{print $4}')
+FR2=$(./stratum-ping -c ${COUNT} ${FI2}:9999 | tail -1 | awk '{print $4}')
+FR3=$(./stratum-ping -c ${COUNT} ${FI3}:9999 | tail -1 | awk '{print $4}')
+FR4=$(./stratum-ping -c ${COUNT} ${FI4}:9999 | tail -1 | awk '{print $4}')
+FR5=$(./stratum-ping -c ${COUNT} ${FI5}:9999 | tail -1 | awk '{print $4}')
+FR6=$(./stratum-ping -c ${COUNT} ${FI6}:9999 | tail -1 | awk '{print $4}')
+FR7=$(./stratum-ping -c ${COUNT} ${FI7}:9999 | tail -1 | awk '{print $4}')
+HR1=$(./stratum-ping -c ${COUNT} ${HI1}:3939 | tail -1 | awk '{print $4}')
 
 # Echo results in table
 echo ""
