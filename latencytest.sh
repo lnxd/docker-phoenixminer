@@ -14,6 +14,30 @@ NA5=eth-asia1.nanopool.org
 NA6=eth-jp1.nanopool.org
 NA7=eth-au1.nanopool.org
 
+EI1=$(dig +short ${EA1} | tail -n1)
+EI2=$(dig +short ${EA2} | tail -n1)
+EI3=$(dig +short ${EA3} | tail -n1)
+EI4=$(dig +short ${EA4} | tail -n1)
+NI1=$(dig +short ${NA1} | tail -n1)
+NI2=$(dig +short ${NA2} | tail -n1)
+NI3=$(dig +short ${NA3} | tail -n1)
+NI4=$(dig +short ${NA4} | tail -n1)
+NI5=$(dig +short ${NA5} | tail -n1)
+NI6=$(dig +short ${NA6} | tail -n1)
+NI7=$(dig +short ${NA7} | tail -n1)
+
+EC1=$(curl https://ip-api.com/json/${EI1}?fields=country) | jq '.country'
+EC2=$(curl https://ip-api.com/json/${EI2}?fields=country) | jq '.country'
+EC3=$(curl https://ip-api.com/json/${EI3}?fields=country) | jq '.country'
+EC4=$(curl https://ip-api.com/json/${EI4}?fields=country) | jq '.country'
+NC1=$(curl https://ip-api.com/json/${NI1}?fields=country) | jq '.country'
+NC2=$(curl https://ip-api.com/json/${NI2}?fields=country) | jq '.country'
+NC3=$(curl https://ip-api.com/json/${NI3}?fields=country) | jq '.country'
+NC4=$(curl https://ip-api.com/json/${NI4}?fields=country) | jq '.country'
+NC5=$(curl https://ip-api.com/json/${NI5}?fields=country) | jq '.country'
+NC6=$(curl https://ip-api.com/json/${NI6}?fields=country) | jq '.country'
+NC7=$(curl https://ip-api.com/json/${NI7}?fields=country) | jq '.country'
+
 ER1=$(./stratum-ping -c 10 ${EA1}:4444 | tail -1 | awk '{print $4}')
 ER2=$(./stratum-ping -c 10 ${EA2}:4444 | tail -1 | awk '{print $4}')
 ER3=$(./stratum-ping -c 10 ${EA3}:4444 | tail -1 | awk '{print $4}')
@@ -27,14 +51,14 @@ NR6=$(./stratum-ping -c 10 ${NA6}:9999 | tail -1 | awk '{print $4}')
 NR7=$(./stratum-ping -c 10 ${NA7}:9999 | tail -1 | awk '{print $4}')
 
 echo "Ethereum Results: "
-echo "Ethermine US East     ${ER1%?}  ${EA1}"
-echo "Ethermine US West     ${ER2%?}  ${EA2}"
-echo "Ethermine Singapore   ${ER3%?}  ${EA3}"
-echo "Ethermine Europe      ${ER4%?}  ${EA4}"
-echo "Nanopool Canada       ${NR1%?}  ${NA1}"
-echo "Nanopool California   ${NR2%?}  ${NA2}"
-echo "Nanopool Netherlands  ${NR3%?}  ${NA3}"
-echo "Nanopool France       ${NR4%?}  ${NA4}"
-echo "Nanopool Canada       ${NR5%?}  ${NA5}"
-echo "Nanopool Japan        ${NR6%?}  ${NA6}"
-echo "Nanopool Sydney       ${NR7%?}  ${NA7}"
+echo "Ethermine  ${ER1%?}  ${EC1}  ${EA1}"
+echo "Ethermine  ${ER2%?}  ${EC2}  ${EA2}"
+echo "Ethermine  ${ER3%?}  ${EC3}  ${EA3}"
+echo "Ethermine  ${ER4%?}  ${EC4}  ${EA4}"
+echo "Nanopool   ${NR1%?}  ${NC1}  ${NA1}"
+echo "Nanopool   ${NR2%?}  ${NC2}  ${NA2}"
+echo "Nanopool   ${NR3%?}  ${NC3}  ${NA3}"
+echo "Nanopool   ${NR4%?}  ${NC4}  ${NA4}"
+echo "Nanopool   ${NR5%?}  ${NC5}  ${NA5}"
+echo "Nanopool   ${NR6%?}  ${NC6}  ${NA6}"
+echo "Nanopool   ${NR7%?}  ${NC7}  ${NA7}"
