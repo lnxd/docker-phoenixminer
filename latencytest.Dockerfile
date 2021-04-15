@@ -19,7 +19,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8
 
 COPY --from=stratum-ping-builder /home/docker/stratum-ping/main /home/docker/stratum-ping
-COPY --from=jq-builder /usr/local/bin/jq /home/docker/jq
 COPY latencytest.sh /home/docker/latencytest.sh
 RUN chmod +x /home/docker/latencytest.sh; \
     apt-get update && apt-get install jq && apt-get clean all;
