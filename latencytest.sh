@@ -62,7 +62,7 @@ TR2=$(./stratum-ping -c 10 ${TA2}:2020 | tail -1 | awk '{print $4}')
 TR3=$(./stratum-ping -c 10 ${TA3}:2020 | tail -1 | awk '{print $4}')
 
 echo ""
-echo "Ethereum Results: "
+printf "%-12s %-15s %-15s %-18s %-30s\n" "Pool" "Geo" "Latency" "IP" "Address"
 POOL=Ethermine
 printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${EC1}" "${ER1%?}" "${EI1}" "${EA1}"
 printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${EC2}" "${ER2%?}" "${EI2}" "${EA2}"
