@@ -52,10 +52,10 @@ NR7=$(./stratum-ping -c 10 ${NA7}:9999 | tail -1 | awk '{print $4}')
 echo ""
 echo "Ethereum Results: "
 POOL=Ethermine
-printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${EI1} "${EC1}" "${ER1%?}" "${EA1}"
-printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${EI2} "${EC2}" "${ER2%?}" "${EA2}"
-printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${EI3} "${EC3}" "${ER3%?}" "${EA3}"
-printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${EI4} "${EC4}" "${ER4%?}" "${EA4}"
+printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${EI1}" "${EC1}" "${ER1%?}" "${EA1}"
+printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${EI2}" "${EC2}" "${ER2%?}" "${EA2}"
+printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${EI3}" "${EC3}" "${ER3%?}" "${EA3}"
+printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${EI4}" "${EC4}" "${ER4%?}" "${EA4}"
 POOL=Nanopool
 printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${NI1}" "${NC1}" "${NR1%?}" "${NA1}"
 printf "%-12s %-18s %-15s %-18s %-30s\n" "${POOL}" "${NI2}" "${NC2}" "${NR2%?}" "${NA2}"
