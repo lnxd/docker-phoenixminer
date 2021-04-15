@@ -1,6 +1,5 @@
 #!/bin/bash
 echo "Running tests, this will take around 2 minutes to complete"
-echo ""
 
 EA1=us1.ethermine.org
 EA2=us2.ethermine.org
@@ -50,6 +49,7 @@ NR5=$(./stratum-ping -c 10 ${NA5}:9999 | tail -1 | awk '{print $4}')
 NR6=$(./stratum-ping -c 10 ${NA6}:9999 | tail -1 | awk '{print $4}')
 NR7=$(./stratum-ping -c 10 ${NA7}:9999 | tail -1 | awk '{print $4}')
 
+echo ""
 echo "Ethereum Results: "
 POOL=Ethermine
 printf "%-30s | %-30s | %-30s | %-30s\n" "${POOL}" "${ER1%?}" "${EC1}" "${EA1}"
