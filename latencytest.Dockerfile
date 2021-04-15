@@ -27,5 +27,5 @@ RUN sed -i -e "s/mine.sh/latencytest.sh/" /home/docker/start.sh; \
 
 WORKDIR /home/docker
 
-CMD ["./latencytest.sh"] 
+CMD ["./start.sh"] 
 
