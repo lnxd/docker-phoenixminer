@@ -21,9 +21,9 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # get dependencies and build.
 # valgrind seems to have trouble with pthreads TLS so it's off.
 
-RUN git clone --depth 1 https://github.com/stedolan/jq /app; \
-    apt-get update; \
+RUN apt-get update; \
     apt-get install -y build-essential autoconf libtool git bison flex python3 python3-pip wget; \
+    git clone --depth 1 https://github.com/stedolan/jq /app; \
     pip3 install pipenv; \
     (cd /app/docs && pipenv sync) && \
     (cd /app && \
