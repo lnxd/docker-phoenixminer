@@ -26,17 +26,17 @@ NI5=$(dig +short ${NA5} | tail -n1)
 NI6=$(dig +short ${NA6} | tail -n1)
 NI7=$(dig +short ${NA7} | tail -n1)
 
-EC1=$(curl -s https://ip-api.com/json/${EI1}?fields=country) | jq '.country'
-EC2=$(curl -s https://ip-api.com/json/${EI2}?fields=country) | jq '.country'
-EC3=$(curl -s https://ip-api.com/json/${EI3}?fields=country) | jq '.country'
-EC4=$(curl -s https://ip-api.com/json/${EI4}?fields=country) | jq '.country'
-NC1=$(curl -s https://ip-api.com/json/${NI1}?fields=country) | jq '.country'
-NC2=$(curl -s https://ip-api.com/json/${NI2}?fields=country) | jq '.country'
-NC3=$(curl -s https://ip-api.com/json/${NI3}?fields=country) | jq '.country'
-NC4=$(curl -s https://ip-api.com/json/${NI4}?fields=country) | jq '.country'
-NC5=$(curl -s https://ip-api.com/json/${NI5}?fields=country) | jq '.country'
-NC6=$(curl -s https://ip-api.com/json/${NI6}?fields=country) | jq '.country'
-NC7=$(curl -s https://ip-api.com/json/${NI7}?fields=country) | jq '.country'
+EC1=$(curl -s https://ip-api.com/json/${EI1}?fields=country | jq '.country')
+EC2=$(curl -s https://ip-api.com/json/${EI2}?fields=country | jq '.country')
+EC3=$(curl -s https://ip-api.com/json/${EI3}?fields=country | jq '.country')
+EC4=$(curl -s https://ip-api.com/json/${EI4}?fields=country | jq '.country')
+NC1=$(curl -s https://ip-api.com/json/${NI1}?fields=country | jq '.country')
+NC2=$(curl -s https://ip-api.com/json/${NI2}?fields=country | jq '.country')
+NC3=$(curl -s https://ip-api.com/json/${NI3}?fields=country | jq '.country')
+NC4=$(curl -s https://ip-api.com/json/${NI4}?fields=country | jq '.country')
+NC5=$(curl -s https://ip-api.com/json/${NI5}?fields=country | jq '.country')
+NC6=$(curl -s https://ip-api.com/json/${NI6}?fields=country | jq '.country')
+NC7=$(curl -s https://ip-api.com/json/${NI7}?fields=country | jq '.country')
 
 ER1=$(./stratum-ping -c 10 ${EA1}:4444 | tail -1 | awk '{print $4}')
 ER2=$(./stratum-ping -c 10 ${EA2}:4444 | tail -1 | awk '{print $4}')
