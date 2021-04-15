@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Running tests, this will take around 2 minutes to complete"
+echo "Running tests, this will take approximately 3m51s to complete"
 
 EA1=us1.ethermine.org
 EA2=us2.ethermine.org
@@ -15,6 +15,13 @@ NA7=eth-au1.nanopool.org
 TA1=eth.2miners.com
 TA2=us-eth.2miners.com
 TA3=asia-eth.2miners.com
+FA1=eth-us-east.flexpool.io
+FA2=eth-us-west.flexpool.io
+FA3=eth-de.flexpool.io
+FA4=eth-se.flexpool.io
+FA5=eth-sg.flexpool.io
+FA6=eth-au.flexpool.io
+FA7=eth-br.flexpool.io
 
 EI1=$(./stratum-ping -c 1 ${EA1}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 EI2=$(./stratum-ping -c 1 ${EA2}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
@@ -30,6 +37,13 @@ NI7=$(./stratum-ping -c 1 ${NA7}:9999 | grep PING | sed -e "s/).*//" | sed -e "s
 TI1=$(./stratum-ping -c 1 ${TA1}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 TI2=$(./stratum-ping -c 1 ${TA2}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 TI3=$(./stratum-ping -c 1 ${TA3}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
+FI1=$(./stratum-ping -c 1 ${FA1}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
+FI2=$(./stratum-ping -c 1 ${FA2}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
+FI3=$(./stratum-ping -c 1 ${FA3}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
+FI4=$(./stratum-ping -c 1 ${FA4}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
+FI5=$(./stratum-ping -c 1 ${FA5}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
+FI6=$(./stratum-ping -c 1 ${FA6}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
+FI7=$(./stratum-ping -c 1 ${FA7}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 
 EC1=$(curl -s http://ip-api.com/json/${EI1}?fields=country | jq -r '.country')
 EC2=$(curl -s http://ip-api.com/json/${EI2}?fields=country | jq -r '.country')
@@ -45,6 +59,13 @@ NC7=$(curl -s http://ip-api.com/json/${NI7}?fields=country | jq -r '.country')
 TC1=$(curl -s http://ip-api.com/json/${TI1}?fields=country | jq -r '.country')
 TC2=$(curl -s http://ip-api.com/json/${TI2}?fields=country | jq -r '.country')
 TC3=$(curl -s http://ip-api.com/json/${TI3}?fields=country | jq -r '.country')
+FC1=$(curl -s http://ip-api.com/json/${FI1}?fields=country | jq -r '.country')
+FC2=$(curl -s http://ip-api.com/json/${FI2}?fields=country | jq -r '.country')
+FC3=$(curl -s http://ip-api.com/json/${FI3}?fields=country | jq -r '.country')
+FC4=$(curl -s http://ip-api.com/json/${FI4}?fields=country | jq -r '.country')
+FC5=$(curl -s http://ip-api.com/json/${FI5}?fields=country | jq -r '.country')
+FC6=$(curl -s http://ip-api.com/json/${FI6}?fields=country | jq -r '.country')
+FC7=$(curl -s http://ip-api.com/json/${FI7}?fields=country | jq -r '.country')
 
 ER1=$(./stratum-ping -c 10 ${EA1}:4444 | tail -1 | awk '{print $4}')
 ER2=$(./stratum-ping -c 10 ${EA2}:4444 | tail -1 | awk '{print $4}')
@@ -60,6 +81,13 @@ NR7=$(./stratum-ping -c 10 ${NA7}:9999 | tail -1 | awk '{print $4}')
 TR1=$(./stratum-ping -c 10 ${TA1}:2020 | tail -1 | awk '{print $4}')
 TR2=$(./stratum-ping -c 10 ${TA2}:2020 | tail -1 | awk '{print $4}')
 TR3=$(./stratum-ping -c 10 ${TA3}:2020 | tail -1 | awk '{print $4}')
+FR1=$(./stratum-ping -c 10 ${FA1}:9999 | tail -1 | awk '{print $4}')
+FR2=$(./stratum-ping -c 10 ${FA2}:9999 | tail -1 | awk '{print $4}')
+FR3=$(./stratum-ping -c 10 ${FA3}:9999 | tail -1 | awk '{print $4}')
+FR4=$(./stratum-ping -c 10 ${FA4}:9999 | tail -1 | awk '{print $4}')
+FR5=$(./stratum-ping -c 10 ${FA5}:9999 | tail -1 | awk '{print $4}')
+FR6=$(./stratum-ping -c 10 ${FA6}:9999 | tail -1 | awk '{print $4}')
+FR7=$(./stratum-ping -c 10 ${FA7}:9999 | tail -1 | awk '{print $4}')
 
 echo ""
 printf "%-12s %-15s %-15s %-18s %-30s\n" "Pool" "Geo" "Latency" "IP" "Address"
@@ -80,3 +108,11 @@ POOL=2Miners
 printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${TC1}" "${TR1%?}" "${TI1}" "${TA1}"
 printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${TC2}" "${TR2%?}" "${TI2}" "${TA2}"
 printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${TC3}" "${TR3%?}" "${TI3}" "${TA3}"
+POOL=Flexpool
+printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC1}" "${FR1%?}" "${FI1}" "${FA1}"
+printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC2}" "${FR2%?}" "${FI2}" "${FA2}"
+printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC3}" "${FR3%?}" "${FI3}" "${FA3}"
+printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC4}" "${FR4%?}" "${FI4}" "${FA4}"
+printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC5}" "${FR5%?}" "${FI5}" "${FA5}"
+printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC6}" "${FR6%?}" "${FI6}" "${FA6}"
+printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC7}" "${FR7%?}" "${FI7}" "${FA7}"
