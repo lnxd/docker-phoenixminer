@@ -22,6 +22,7 @@ FA4=eth-se.flexpool.io
 FA5=eth-sg.flexpool.io
 FA6=eth-au.flexpool.io
 FA7=eth-br.flexpool.io
+HA1=eth.ethashpool.com
 
 EI1=$(./stratum-ping -c 1 ${EA1}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 EI2=$(./stratum-ping -c 1 ${EA2}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
@@ -44,6 +45,7 @@ FI4=$(./stratum-ping -c 1 ${FA4}:4444 | grep PING | sed -e "s/).*//" | sed -e "s
 FI5=$(./stratum-ping -c 1 ${FA5}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 FI6=$(./stratum-ping -c 1 ${FA6}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 FI7=$(./stratum-ping -c 1 ${FA7}:4444 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
+HI1=$(./stratum-ping -c 1 ${HA1}:3939 | grep PING | sed -e "s/).*//" | sed -e "s/.*(//")
 
 EC1=$(curl -s http://ip-api.com/json/${EI1}?fields=country | jq -r '.country')
 EC2=$(curl -s http://ip-api.com/json/${EI2}?fields=country | jq -r '.country')
@@ -66,6 +68,7 @@ FC4=$(curl -s http://ip-api.com/json/${FI4}?fields=country | jq -r '.country')
 FC5=$(curl -s http://ip-api.com/json/${FI5}?fields=country | jq -r '.country')
 FC6=$(curl -s http://ip-api.com/json/${FI6}?fields=country | jq -r '.country')
 FC7=$(curl -s http://ip-api.com/json/${FI7}?fields=country | jq -r '.country')
+HC1=$(curl -s http://ip-api.com/json/${HI1}?fields=country | jq -r '.country')
 
 ER1=$(./stratum-ping -c 10 ${EA1}:4444 | tail -1 | awk '{print $4}')
 ER2=$(./stratum-ping -c 10 ${EA2}:4444 | tail -1 | awk '{print $4}')
@@ -88,6 +91,7 @@ FR4=$(./stratum-ping -c 10 ${FA4}:9999 | tail -1 | awk '{print $4}')
 FR5=$(./stratum-ping -c 10 ${FA5}:9999 | tail -1 | awk '{print $4}')
 FR6=$(./stratum-ping -c 10 ${FA6}:9999 | tail -1 | awk '{print $4}')
 FR7=$(./stratum-ping -c 10 ${FA7}:9999 | tail -1 | awk '{print $4}')
+HR1=$(./stratum-ping -c 10 ${HA1}:3939 | tail -1 | awk '{print $4}')
 
 echo ""
 printf "%-12s %-15s %-15s %-18s %-30s\n" "Pool" "Geo" "Latency" "IP" "Address"
@@ -116,3 +120,5 @@ printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC4}" "${FR4%?}" "${FI4}" 
 printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC5}" "${FR5%?}" "${FI5}" "${FA5}"
 printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC6}" "${FR6%?}" "${FI6}" "${FA6}"
 printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${FC7}" "${FR7%?}" "${FI7}" "${FA7}"
+POOL=Ethashpool
+printf "%-12s %-15s %-15s %-18s %-30s\n" "${POOL}" "${HC1}" "${HR1%?}" "${HI1}" "${HA1}"
