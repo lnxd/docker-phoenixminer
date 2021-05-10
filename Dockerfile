@@ -44,10 +44,10 @@ RUN curl "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases/download/
     sudo chmod +x /home/docker/phoenixminer/PhoenixMiner;
 
 # Copy latest scripts
-COPY start.sh /home/docker/start.sh
-COPY mine.sh /home/docker/mine.sh
+COPY start.sh mine.sh custom-mine.sh /home/docker/
 RUN sudo chmod +x /home/docker/start.sh; \
-    sudo chmod +x /home/docker/mine.sh;
+    sudo chmod +x /home/docker/mine.sh; \
+    sudo chmod +x /home/docker/custom-mine.sh;
 
 # Set environment variables.
 ENV BASE="Ubuntu 20.04"
@@ -61,6 +61,7 @@ ENV TT="56"
 ENV TSTOP="85"
 ENV TSTART="80"
 ENV ADDITIONAL=" "
+ENV CUSTOM=""
 
 # Define working directory.
 WORKDIR /home/docker/
