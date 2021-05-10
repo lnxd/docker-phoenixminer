@@ -1,6 +1,6 @@
 # PhoenixMiner Docker Container for Unraid
 
-PhoenixMiner binary source for this container is currently version 5.5c from [Github](https://github.com/PhoenixMinerDevTeam/PhoenixMiner/).
+PhoenixMiner binary source for this container is currently version 5.6c from [Github](https://github.com/PhoenixMinerDevTeam/PhoenixMiner/).
 
 It contains version 20.20 of the AMDGPU Pro Drivers direct from [AMD](https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-20)
 
