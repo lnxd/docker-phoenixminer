@@ -7,7 +7,11 @@ term_handler() {
 }
 
 trap 'kill ${!}; term_handler' SIGTERM
-su ${USER} -c "/home/docker/mine.sh" &
+if [ "${CUSTOM}" == "true" ]; then
+	/home/docker/custom-mine.sh &
+else
+	/home/docker/mine.sh &
+fi
 killpid="$!"
 while true; do
 	wait $killpid
