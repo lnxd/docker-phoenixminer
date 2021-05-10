@@ -1,6 +1,6 @@
 # PhoenixMiner Docker Container for Unraid
 
-PhoenixMiner binary source for this container is currently version 5.5c from [Github](https://github.com/PhoenixMinerDevTeam/PhoenixMiner/).
+PhoenixMiner binary source for this container is currently version 5.6c from [Github](https://github.com/PhoenixMinerDevTeam/PhoenixMiner/).
 
 It contains version 20.20 of the AMDGPU Pro Drivers direct from [AMD](https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-20)
 
@@ -141,7 +141,7 @@ Also keep in mind you are unlikely to be able to profit from mining with a card 
 ​
 ## Additional PhoenixMiner Arguments
 ```
-Phoenix Miner 5.5c Linux/gcc - Release build
+Phoenix Miner 5.6c Linux/gcc - Release build
 --------------------------------------------
 
 Usage: PhonixMiner [OPTIONS]
@@ -198,7 +198,6 @@ Pool options (normal mode):
   -dworker <name> Dual mining worker name
   -dcoin blake2s Dual mining algorithm (currently only blake2s)
   -dstales <n> Submit stales to dual mining pool: 1 - yes (default), 0 - no
-
 General pool options:
   -fret <n> Switch to next pool afer N retries (default: 3)
   -ftimeout <n> Reconnect if no new ethash job is receved for n seconds
@@ -219,7 +218,6 @@ Remote control options:
     (default 3333)
   -cdmpass <pass> Set the CDM remote monitoring password
   -cdmrs Reload the settings if config.txt is edited/uploaded remotely
-
 Mining options:
   -amd  Use only AMD cards
   -acm  Turn on AMD compute mode (requires administrative rights)
@@ -274,15 +272,20 @@ Mining options:
   -timeout <n> Restart miner according to -rmode after n minutes
   -pauseat hh:mm Pause the miner at hh::mm (24 hours time)
   -resumeat hh::mm Resume the miner at hh::mm (24 hours time)
-
 Hardware control options:
   -hwm <n> Hardware monitoring frequency (the default is 1):
       0 - no HW monitoring on all cards, 1 - normal monitoring,
       2 to 5 - less frequent monitoring
   -tt <n> Set fan control target temperature (special values:
       0 - no fan control, negative - fixed fan speed at n%)
+  -ttj <n> Set fan control target junction temperature (can be used
+      only on GPUs that report the junction temperature)
+  -ttmem <n> Set fan control target video memory temperature (can be used
+      only on GPUs that report the VRAM temperature)
   -fanmin <n> Set fan control min speed in % (-1 for default)
   -fanmax <n> Set fan control max speed in % (-1 for default)
+  -fanstop <n> If disabled (0, the default) the miner will not allow the fans
+      to stop if fixed fan speed (e.g. -tt -40), or -fanmin is used
   -fcm <n> Set fan control mode (0 - auto, 1 - normal, 2 - alt; default: 0)
   -fpwm <n> Fan PWM mode (0 - auto, 1 - direct, 2 - Polaris,
       3 - Vega, 4 - Radeon VII, Navi; default: 0)
@@ -305,6 +308,10 @@ Hardware control options:
   -mt <n> Memory timing level (0 - VBIOS/default), AMD only
   -leavemt Do not reset memory timing level to 0 when closing
   -ttli <n> Lower GPU usage when temp is >= n deg C (0 for default)
+  -tmaxj <n> Lower GPU usage when junction temp is >= n deg C (0 for default;
+      can be used only on GPUs that report the junction temperature)
+  -tmaxmem <n> Lower GPU usage when VRAM temp is >= n deg C (0 for default;
+      can be used only on GPUs that report the VRAM temperature)
   -hstats <n> HW stats mode (0: temp and fan speed only,
     1: temp, fan speed and power, 2: full; default: 1)
   -pidle <n> Idle power usage in W (will be added to GPU power)
@@ -321,7 +328,6 @@ Hardware control options:
   -cudaBlockSize <n> Set the CUDA block size (advanced)
   -cudaGridMultiplier <n> Set the CUDA grid size (advanced; will be multiplied
     by the number of computing units)
-
 General Options:
   -v,-version  Show the version and exit
   -h,-help  Show this help message and exit
