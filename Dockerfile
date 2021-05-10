@@ -20,18 +20,20 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     usermod -aG sudo docker; \
     mkdir /home/docker;
 
-# Install amdgpu drivers
+# Install default AMD Drivers
 ARG AMD_DRIVER=amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz
 ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
 RUN mkdir -p /tmp/opencl-driver-amd
 WORKDIR /tmp/opencl-driver-amd
-RUN echo AMD_DRIVER is $AMD_DRIVER; \
+RUN echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes; \
+    echo AMD_DRIVER is $AMD_DRIVER; \
     curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER; \
     tar -Jxvf $AMD_DRIVER; \
+    rm $AMD_DRIVER; \
     cd amdgpu-pro-*; \
-    ./amdgpu-install; \
-    apt-get install opencl-amdgpu-pro -y; \
-    rm -rf /tmp/opencl-driver-amd;
+    ./amdgpu-install --opencl=legacy,pal --headless --no-dkms; \
+    rm -rf /tmp/opencl-driver-amd; \
+    rm /etc/apt/apt.conf.d/90assumeyes;
 
 # Get Phoenix Miner
 ARG MINERV=5.5c
@@ -49,7 +51,7 @@ RUN sudo chmod +x /home/docker/start.sh; \
 
 # Set environment variables.
 ENV BASE="Ubuntu 20.04"
-ENV DRIVER="amdgpu-pro-20.20-1098277 / AMDGPU-Pro Driver v20.20"
+ENV DRIVERV="20.20"
 ENV PATH=$PATH:/home/docker/phoenixminer
 ENV HOME="/home/docker"
 ENV POOL="asia1.ethermine.org:4444"
