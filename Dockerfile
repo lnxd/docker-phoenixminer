@@ -44,9 +44,8 @@ RUN curl "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases/download/
     sudo chmod +x /home/docker/phoenixminer/PhoenixMiner;
 
 # Copy latest scripts
-COPY start.sh install-driver.sh mine.sh custom-mine.sh /home/docker/
+COPY start.sh mine.sh custom-mine.sh /home/docker/
 RUN sudo chmod +x /home/docker/start.sh; \
-    sudo chmod +x /home/docker/install-driver.sh; \
     sudo chmod +x /home/docker/mine.sh; \
     sudo chmod +x /home/docker/custom-mine.sh;
 
