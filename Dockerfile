@@ -60,6 +60,7 @@ ENV TT="56"
 ENV TSTOP="85"
 ENV TSTART="80"
 ENV ADDITIONAL=" "
+ENV CUSTOM=""
 
 # Define working directory.
 WORKDIR /home/docker/
