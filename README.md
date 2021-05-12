@@ -1,6 +1,6 @@
 # PhoenixMiner Docker Container for Unraid
 
-PhoenixMiner binary source for this container is currently version 5.6c from [Github](https://github.com/PhoenixMinerDevTeam/PhoenixMiner/).
+PhoenixMiner binary source for this container is currently version [5.6d](https://phoenixminer.info/downloads/) from the developers on [bitcointalk.org](https://bitcointalk.org/index.php?topic=2647654.0).
 
 It contains version 20.20 of the AMDGPU Pro Drivers direct from [AMD](https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-20)
 
@@ -111,7 +111,7 @@ Also keep in mind you are unlikely to be able to profit from mining with a card 
 ​
 ## FAQ:
 #### **Q:** Where can I find more arguments to use in additional?
-**A:** The output of ./Phoenixminer `-help` for 5.5c is available here.
+**A:** The output of ./Phoenixminer `-help` for 5.6d is available here.
 
 
 #### **Q:** I have multiple GPUs, can I use this container?
