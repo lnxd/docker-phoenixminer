@@ -61,6 +61,10 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 		uninstall_amd_driver
 		install_amd_driver "amdgpu-pro-20.50-1234664-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,rocr --headless --no-dkms"
 		;;
+	21.10)
+		uninstall_amd_driver
+		install_amd_driver "amdgpu-pro-21.10-1247438-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,rocr --headless --no-dkms"
+		;;
 	esac
 
 fi
