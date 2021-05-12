@@ -36,9 +36,9 @@ RUN echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes; \
     rm /etc/apt/apt.conf.d/90assumeyes;
 
 # Get Phoenix Miner
-ARG MINERV=5.6c
+ARG MINERV=5.6d
 ENV MINERV=$MINERV
-RUN curl "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases/download/${MINERV}/PhoenixMiner_${MINERV}_Linux.tar.gz" -L -o "PhoenixMiner_${MINERV}_Linux.tar.gz"; \
+RUN curl "https://phoenixminer.info/downloads/PhoenixMiner_${MINERV}_Linux.tar.gz" -L -o "PhoenixMiner_${MINERV}_Linux.tar.gz"; \
     tar xvzf PhoenixMiner_${MINERV}_Linux.tar.gz -C /home/docker; \
     mv "/home/docker/PhoenixMiner_${MINERV}_Linux" "/home/docker/phoenixminer"; \
     sudo chmod +x /home/docker/phoenixminer/PhoenixMiner;
