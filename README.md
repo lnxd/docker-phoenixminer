@@ -141,7 +141,7 @@ Also keep in mind you are unlikely to be able to profit from mining with a card 
 ​
 ## Additional PhoenixMiner Arguments
 ```
-Phoenix Miner 5.6c Linux/gcc - Release build
+Phoenix Miner 5.6d Linux/gcc - Release build
 --------------------------------------------
 
 Usage: PhonixMiner [OPTIONS]
