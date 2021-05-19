@@ -70,10 +70,6 @@ if [ -f /usr/bin/nvidia-smi ]; then
         fi
 fi
 
-echo "---Setting permissions---"
-chown -R root:100 /opt/scripts
-chmod -R 750 /opt/scripts
-
 term_handler() {
         kill -SIGTERM "$killpid"
         wait "$killpid" -f 2>/dev/null
