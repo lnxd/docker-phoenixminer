@@ -5,7 +5,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
     apt-get upgrade -y; \
     apt-get install -y apt-utils; \
-    apt-get install -y curl sudo libpci3 xz-utils; \
+    apt-get install -y curl sudo libpci3 xz-utils wget kmod; \
 # Clean up apt
     apt-get clean all; \
 # Set timezone
@@ -62,6 +62,7 @@ ENV TSTOP="85"
 ENV TSTART="80"
 ENV ADDITIONAL=" "
 ENV CUSTOM=""
+ENV NVIDIA_BUILD_OPTS="-a -N -q --install-libglvnd --ui=none --no-kernel-module"
 
 # Define working directory.
 WORKDIR /home/docker/
