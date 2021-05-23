@@ -2,37 +2,6 @@ ARG base
 
 FROM ubuntu:${base:-20.04}
 
-RUN export DEBIAN_FRONTEND=noninteractive; \
-    install -y curl; \
-    test_amd_driver_link() {; \
-        AMD_DRIVER=$1; \
-        AMD_DRIVER_URL=$2; \
-        echo "---Downloading driver from "$AMD_DRIVER_URL/$AMD_DRIVER"---"; \
-        if curl --head --silent --fail --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER 2>/dev/null; then; \
-            echo $AMD_DRIVER" exists."; \
-        else; \
-            echo $AMD_DRIVER" failed."; \
-        fi; \
-    }; \
-    echo "---Starting tests---"; \
-    test_amd_driver_link "amdgpu-pro-18.20-673703-ubuntu-18.04.tar.xz"  "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-18.30-641594.tar.xz"               "https://drivers.amd.com/drivers/linux/ubuntu/18.04"; \
-    test_amd_driver_link "amdgpu-pro-18.40-697810-ubuntu-18.04.tar.xz"  "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-18.50-756341-ubuntu-18.04.tar.xz"  "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-19.10-785425-ubuntu-18.04.tar.xz"  "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-19.20-812932-ubuntu-18.04.tar.xz"  "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-19.30-934563-ubuntu-18.04.tar.xz"  "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz"  "https://drivers.amd.com/drivers/linux/19.50"; \
-    test_amd_driver_link "amdgpu-pro-20.10-1048554-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-20.30-1109583-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-20.40-1147286-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-20.45-1188099-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-20.50-1234664-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux"; \
-    test_amd_driver_link "amdgpu-pro-21.10-1247438-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux";
-
-FROM ubuntu:${base:-20.04}
-
 # Install default apps
 RUN export DEBIAN_FRONTEND=noninteractive; \
     apt-get update; \
