@@ -21,7 +21,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     mkdir /home/docker;
 
 # Install default AMD Drivers
-ARG AMD_DRIVER=amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz
+ARG AMD_DRIVER=amdgpu-pro-21.10-1247438-ubuntu-20.04.tar.xz
 ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
 RUN mkdir -p /tmp/opencl-driver-amd
 WORKDIR /tmp/opencl-driver-amd
@@ -31,7 +31,7 @@ RUN echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes; \
     tar -Jxvf $AMD_DRIVER; \
     rm $AMD_DRIVER; \
     cd amdgpu-pro-*; \
-    ./amdgpu-install --opencl=legacy,pal --headless --no-dkms; \
+    ./amdgpu-pro-install --opencl=legacy,pal --headless; \
     rm -rf /tmp/opencl-driver-amd; \
     rm /etc/apt/apt.conf.d/90assumeyes;
 
