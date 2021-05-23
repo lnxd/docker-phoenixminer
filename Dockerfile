@@ -18,9 +18,11 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     echo "Set disable_coredump false" >> /etc/sudo.conf; \
 # Create user account
     useradd docker; \
-    echo 'docker:docker' | sudo chpasswd; \
+    groupadd -g 98 docker; \
+    useradd --uid 99 --gid 98 docker; \
+    echo 'docker:docker' | chpasswd; \
     usermod -aG sudo docker; \
-    mkdir /home/docker;
+    mkdir -p /home/docker;
 
 # Get Phoenix Miner
 ARG MINERV=5.6d
@@ -32,9 +34,9 @@ RUN curl "https://phoenixminer.info/downloads/PhoenixMiner_${MINERV}_Linux.tar.g
 
 # Copy latest scripts
 COPY start.sh mine.sh custom-mine.sh /home/docker/
-RUN sudo chmod +x /home/docker/start.sh; \
-    sudo chmod +x /home/docker/mine.sh; \
-    sudo chmod +x /home/docker/custom-mine.sh;
+RUN chmod +x /home/docker/start.sh; \
+    chmod +x /home/docker/mine.sh; \
+    chmod +x /home/docker/custom-mine.sh;
 
 # Set environment variables.
 ENV BASE="Ubuntu ${BASE}"
