@@ -21,19 +21,19 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     mkdir /home/docker;
 
 # Install default AMD Drivers
-ARG AMD_DRIVER=amdgpu-pro-21.10-1247438-ubuntu-20.04.tar.xz
-ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
-RUN mkdir -p /tmp/opencl-driver-amd
-WORKDIR /tmp/opencl-driver-amd
-RUN echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes; \
-    echo AMD_DRIVER is $AMD_DRIVER; \
-    curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER; \
-    tar -Jxvf $AMD_DRIVER; \
-    rm $AMD_DRIVER; \
-    cd amdgpu-pro-*; \
-    ./amdgpu-pro-install --opencl=legacy,pal --headless; \
-    rm -rf /tmp/opencl-driver-amd; \
-    rm /etc/apt/apt.conf.d/90assumeyes;
+#ARG AMD_DRIVER=amdgpu-pro-21.10-1247438-ubuntu-20.04.tar.xz
+#ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
+#RUN mkdir -p /tmp/opencl-driver-amd
+#WORKDIR /tmp/opencl-driver-amd
+#RUN echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes; \
+#    echo AMD_DRIVER is $AMD_DRIVER; \
+#    curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER; \
+#    tar -Jxvf $AMD_DRIVER; \
+#    rm $AMD_DRIVER; \
+#    cd amdgpu-pro-*; \
+#    ./amdgpu-pro-install --opencl=legacy,pal --headless; \
+#    rm -rf /tmp/opencl-driver-amd; \
+#    rm /etc/apt/apt.conf.d/90assumeyes;
 
 # Get Phoenix Miner
 ARG MINERV=5.6d
