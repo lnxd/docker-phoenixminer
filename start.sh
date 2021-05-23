@@ -95,7 +95,7 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV:-20.20}" ]]; then
 
     19.50)
         uninstall_amd_driver
-        install_amd_driver "amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        install_amd_driver "amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux/19.50" "--opencl=legacy,pal --headless"
         ;;
 
     20.10)
