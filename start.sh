@@ -39,8 +39,9 @@ install_amd_driver() {
     echo "---Installing driver, this can take a very long time with no output. Please wait!---"
     apt-get install -y initramfs-tools &>/dev/null
     ./amdgpu-pro-install $FLAGS &>/dev/null
+    apt-get --fix-broken install -y &>/dev/null
+    cd /home/docker/
     rm -rf /tmp/opencl-driver-amd
-    echo ""
     echo "---AMD Driver installation finished---"
     INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
     rm /etc/apt/apt.conf.d/90assumeyes
