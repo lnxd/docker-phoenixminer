@@ -26,7 +26,7 @@ install_amd_driver() {
     AMD_DRIVER=$1
     AMD_DRIVER_URL=$2
     FLAGS=$3
-    echo "---Installing AMD driver, please wait!---"
+    echo "---Installing AMD drivers, please wait!---"
     echo "---Downloading driver from "$AMD_DRIVER_URL/$AMD_DRIVER"---"
     echo 'APT::Get::Assume-Yes "true";' >>/etc/apt/apt.conf.d/90assumeyes
     mkdir -p /tmp/opencl-driver-amd
@@ -48,9 +48,6 @@ install_amd_driver() {
 
 INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
 if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
-    echo "Installed driver version (${INSTALLED_DRIVERV}) does not match wanted driver version (${DRIVERV})"
-    echo "Installing AMD drivers v${DRIVERV}:"
-    echo ""
 
     case $DRIVERV in
 
