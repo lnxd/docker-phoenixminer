@@ -1,4 +1,6 @@
-FROM ubuntu:20.04
+ARG BASE
+
+FROM ubuntu:${BASE:-20.04}
 
 # Install default apps
 RUN export DEBIAN_FRONTEND=noninteractive; \
@@ -20,21 +22,6 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     usermod -aG sudo docker; \
     mkdir /home/docker;
 
-# Install default AMD Drivers
-#ARG AMD_DRIVER=amdgpu-pro-21.10-1247438-ubuntu-20.04.tar.xz
-#ARG AMD_DRIVER_URL=https://drivers.amd.com/drivers/linux
-#RUN mkdir -p /tmp/opencl-driver-amd
-#WORKDIR /tmp/opencl-driver-amd
-#RUN echo 'APT::Get::Assume-Yes "true";'>> /etc/apt/apt.conf.d/90assumeyes; \
-#    echo AMD_DRIVER is $AMD_DRIVER; \
-#    curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER; \
-#    tar -Jxvf $AMD_DRIVER; \
-#    rm $AMD_DRIVER; \
-#    cd amdgpu-pro-*; \
-#    ./amdgpu-pro-install --opencl=legacy,pal --headless; \
-#    rm -rf /tmp/opencl-driver-amd; \
-#    rm /etc/apt/apt.conf.d/90assumeyes;
-
 # Get Phoenix Miner
 ARG MINERV=5.6d
 ENV MINERV=$MINERV
@@ -50,14 +37,14 @@ RUN sudo chmod +x /home/docker/start.sh; \
     sudo chmod +x /home/docker/custom-mine.sh;
 
 # Set environment variables.
-ENV BASE="Ubuntu 20.04"
+ENV BASE="Ubuntu ${BASE}"
 ENV DRIVERV="20.20"
 ENV PATH=$PATH:/home/docker/phoenixminer
 ENV HOME="/home/docker"
-ENV POOL="asia1.ethermine.org:4444"
+ENV POOL="ssl://asia-eth.2miners.com:12020"
 ENV WALLET="0xe037C6245910EbBbA720514835d31B385D76927f"
 ENV PASSWORD="x"
-ENV TT="56"
+ENV TT="-80"
 ENV TSTOP="85"
 ENV TSTART="80"
 ENV ADDITIONAL=" "
