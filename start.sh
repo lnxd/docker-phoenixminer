@@ -18,7 +18,7 @@ uninstall_amd_driver() {
         rm /etc/apt/apt.conf.d/90assumeyes
         echo "Done!"
     else
-        echo "AMD driver already uninstalled"
+        echo "---AMD driver not present---"
     fi
 }
 
@@ -26,20 +26,22 @@ install_amd_driver() {
     AMD_DRIVER=$1
     AMD_DRIVER_URL=$2
     FLAGS=$3
-    echo "Installing driver"
-    echo "Downloading driver from "$AMD_DRIVER_URL/$AMD_DRIVER
+    echo "---Installing AMD driver, please wait!---"
+    echo "---Downloading driver from "$AMD_DRIVER_URL/$AMD_DRIVER"---"
     echo 'APT::Get::Assume-Yes "true";' >>/etc/apt/apt.conf.d/90assumeyes
     mkdir -p /tmp/opencl-driver-amd
     cd /tmp/opencl-driver-amd
-    echo AMD_DRIVER is $AMD_DRIVER
+    #echo AMD_DRIVER is $AMD_DRIVER
     curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER
-    tar -Jxvf $AMD_DRIVER
+    tar -Jxf $AMD_DRIVER &>/dev/null
     rm $AMD_DRIVER
     cd amdgpu-pro-*
-    ./amdgpu-pro-install $FLAGS
+    echo "---Installing driver, this can take a very long time with no output. Please wait!---"
+    apt-get install -y initramfs-tools &>/dev/null
+    ./amdgpu-pro-install $FLAGS &>/dev/null
     rm -rf /tmp/opencl-driver-amd
     echo ""
-    echo "Driver installation finished."
+    echo "---AMD Driver installation finished---"
     INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
     rm /etc/apt/apt.conf.d/90assumeyes
 }
@@ -54,7 +56,7 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 
     0)
         uninstall_amd_driver
-        echo "Skipping installation"
+        echo "---Skipping AMD driver installation---"
         ;;
 
     18.20)

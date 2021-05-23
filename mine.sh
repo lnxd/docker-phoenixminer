@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "---Starting---"
+echo ""
 echo "Project: PhoenixMiner $MINERV"
 echo "Author:  lnxd"
 echo "Base:    $BASE"
