@@ -59,12 +59,62 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
 
     18.20)
         uninstall_amd_driver
-        install_amd_driver "amdgpu-pro-18.20-621984.tar.xz" "https://drivers.amd.com/drivers/linux/ubuntu-18-04" "--opencl=legacy,pal --headless"
+        install_amd_driver "amdgpu-pro-18.20-673703-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        ;;
+
+    18.30)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-18.30-641594.tar.xz" "https://drivers.amd.com/drivers/linux/ubuntu/18.04" "--opencl=legacy,pal --headless"
+        ;;
+
+    18.40)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-18.40-697810-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        ;;
+
+    18.50)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-18.50-756341-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        ;;
+
+    19.10)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-19.10-785425-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        ;;
+
+    19.20)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-19.20-812932-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        ;;
+
+    19.30)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-19.30-934563-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        ;;
+
+    19.50)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-19.50-967956-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        ;;
+
+    20.10)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-20.10-1048554-ubuntu-18.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
         ;;
 
     20.20)
         uninstall_amd_driver
         install_amd_driver "amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        ;;
+
+    20.30)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-20.30-1109583-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
+        ;;
+
+    20.40)
+        uninstall_amd_driver
+        install_amd_driver "amdgpu-pro-20.40-1147286-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,pal --headless"
         ;;
 
     20.45)
@@ -76,6 +126,7 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV}" ]]; then
         uninstall_amd_driver
         install_amd_driver "amdgpu-pro-20.50-1234664-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=legacy,rocr --headless"
         ;;
+
     21.10)
         uninstall_amd_driver
         install_amd_driver "amdgpu-pro-21.10-1247438-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=rocr,legacy --headless"
