@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 # Install default apps
 RUN export DEBIAN_FRONTEND=noninteractive; \
@@ -50,8 +50,8 @@ RUN sudo chmod +x /home/docker/start.sh; \
     sudo chmod +x /home/docker/custom-mine.sh;
 
 # Set environment variables.
-ENV BASE="Ubuntu 20.04"
-ENV DRIVERV="20.20"
+ENV BASE="Ubuntu 18.04"
+ENV DRIVERV="18.30"
 ENV PATH=$PATH:/home/docker/phoenixminer
 ENV HOME="/home/docker"
 ENV POOL="asia1.ethermine.org:4444"
