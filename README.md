@@ -1,8 +1,8 @@
 # PhoenixMiner Docker Container for Unraid
 
-PhoenixMiner binary source for this container is currently version [5.6d](https://phoenixminer.info/downloads/) from the developers on [bitcointalk.org](https://bitcointalk.org/index.php?topic=2647654.0).
+PhoenixMiner binary source for this container is currently version [5.7b](https://phoenixminer.info/downloads/) from the developers on [bitcointalk.org](https://bitcointalk.org/index.php?topic=2647654.0).
 
-It contains version 20.20 of the AMDGPU Pro Drivers direct from [AMD](https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-20)
+It installs AMDGPU Pro Drivers direct from [AMD](https://www.amd.com/en/support/)
 
 
 
@@ -30,7 +30,7 @@ This container was written to be run on Unraid, so the following instructions ap
 
 **Warning:** If you don't leave privileged mode enabled for the container, your GPU's default fan curve will be used, which is usually optimised for gaming. Make sure you have `Dynamix System Autofan` installed to prevent overheating (can be done via CA). I recommend enabling it and setting the high temperature to 25c at most. Low I set to 20c. I could not get the PWM min speed, but this didn't affect anything for me during testing.
 
-If you notice any bugs, feel free to open an Issue or a pull request. For support, I'm best reached via the [support thread](https://forums.unraid.net/topic/104589-support-lnxd-phoenixminer-amd/) on the Unraid Community Forums.
+If you notice any bugs, feel free to open an Issue or a pull request. For support, I can be reached via the [support thread](https://forums.unraid.net/topic/104589-support-lnxd-phoenixminer-amd/) on the Unraid Community Forums. Please note that due to other commitments I will likely be slow to respond. 
 
 
 ​
@@ -49,11 +49,7 @@ These lists are very hopeful, they're sourced from the AMD website, and there's 
  
 Also keep in mind you are unlikely to be able to profit from mining with a card with less than or equal to 4GB VRAM available to it. If you try this container you will probably get a DAG generation error or an extremely low hash rate.
 
-### GPUs possibly compatible with **lnxd/phoenixminer:latest-20.45**:
-* AMD Radeon™ RX 6900/6800 Series Graphics
-
-
-### GPUs possibly compatible with **lnxd/phoenixminer:latest-20.20**:
+### GPUs possibly compatible with **lnxd/phoenixminer:latest**:
 * AMD Radeon™ RX 5700/5600/5500 Series Graphics.
   - ```Confirmed working: 5500XT by lnxd```
 * AMD Radeon™ Pro W-series
@@ -78,35 +74,6 @@ Also keep in mind you are unlikely to be able to profit from mining with a card 
 * AMD Radeon™ R9 285/290/290X Graphics
 * AMD FirePro™ W4300
 * AMD Radeon™ R9 360 Graphics
-
-
-### GPUs possibly compatible with **lnxd/phoenixminer:latest-18.20**:
-* Radeon™ RX Vega Series Graphics
-* AMD Radeon™ Pro WX-series
-* Radeon™ Vega Frontier Edition
-* AMD FirePro™ W9100
-* Radeon™ RX 550/560/570/580 Series Graphics
-  - ```Confirmed working: RX580 8GB by lnxd, RX580 8GB by SPOautos, RX570 8GB by NixonInnes```
-* AMD FirePro™ W8100
-* AMD Radeon™ RX 460/470/480 Graphics
-  - ```Confirmed working: RX480 8GB by ich777```
-* AMD FirePro™ W7100
-* AMD Radeon™ Pro Duo
-* AMD FirePro™ W5100
-* AMD Radeon™ R9 Fury/Fury X/Nano Graphics
-* AMD FirePro™ W4300
-* AMD Radeon™ R9 380/380X/390/390X Graphics
-* AMD FirePro™ W4100
-* AMD Radeon™ R9 285/290/290X Graphics
-* AMD FirePro™ W2100
-* AMD Radeon™ R7 240/250/250X/260/260X/350
-* AMD FirePro™ W600
-* AMD Radeon™ HD7700/7800/8500/8600
-* AMD FirePro™ S-Series
-* AMD Radeon™ R9 360 Graphics
-* AMD Radeon™ Pro WX 9100
-* AMD Radeon™ R5 340
-
 
 ​
 ## FAQ:
