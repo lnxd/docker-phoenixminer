@@ -32,17 +32,6 @@ This container was written to be run on Unraid, so the following instructions ap
 
 If you notice any bugs, feel free to open an Issue or a pull request. For support, I can be reached via the [support thread](https://forums.unraid.net/topic/104589-support-lnxd-phoenixminer-amd/) on the Unraid Community Forums. Please note that due to other commitments I will likely be slow to respond. 
 
-
-​
-##  Docker Hub Tags:
-Different AMD GPUs require different driver versions, and those different driver versions often don't work very well on Operating Systems that they weren't built for. For this reason, I've gone ahead and changed to using multiple tags, each tag has it's own GPU compatibility table further down.
-
-* `lnxd/phoenixminer:latest` (Same as `latest-20.20` as this is the most compatible with current cards)
-* `lnxd/phoenixminer:latest-20.45` (Only for RX6800 and RX6900)
-* `lnxd/phoenixminer:latest-20.20`
-* `lnxd/phoenixminer:latest-18.20`
-
-
 ​
 ## Compatibility:
 These lists are very hopeful, they're sourced from the AMD website, and there's a real possibility your GPU might not work with a tag it's supposed to. Please do not make purchasing decisions based on these tables.
