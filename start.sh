@@ -146,6 +146,7 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV:-20.20}" ]]; then
     21.40.1)
         echo "---21.40.1 is not yet compatible with this container, putting container into sleep mode---" 
         sleep infinity
+        ;;
     esac
 
 fi
