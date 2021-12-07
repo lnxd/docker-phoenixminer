@@ -32,18 +32,6 @@ This container was written to be run on Unraid, so the following instructions ap
 
 If you notice any bugs, feel free to open an Issue or a pull request. For support, I can be reached via the [support thread](https://forums.unraid.net/topic/104589-support-lnxd-phoenixminer-amd/) on the Unraid Community Forums. Please note that due to other commitments I will likely be slow to respond. 
 
-
-​
-##  Docker Hub Tags:
-Different AMD GPUs require different driver versions, and those different driver versions often don't work very well on Operating Systems that they weren't built for. For this reason, I've gone ahead and changed to using multiple tags, each tag has it's own GPU compatibility table further down.
-
-* `lnxd/phoenixminer:latest` (Same as `latest-20.20` as this is the most compatible with current cards)
-* `lnxd/phoenixminer:latest-20.45` (Only for RX6800 and RX6900)
-* `lnxd/phoenixminer:latest-20.20`
-* `lnxd/phoenixminer:latest-18.20`
-
-
-​
 ## Compatibility:
 These lists are very hopeful, they're sourced from the AMD website, and there's a real possibility your GPU might not work with a tag it's supposed to. Please do not make purchasing decisions based on these tables.
  
@@ -75,7 +63,7 @@ Also keep in mind you are unlikely to be able to profit from mining with a card 
 * AMD FirePro™ W4300
 * AMD Radeon™ R9 360 Graphics
 
-​
+
 ## FAQ:
 #### **Q:** Where can I find more arguments to use in additional?
 **A:** The output of ./Phoenixminer `-help` for 5.6d is available here.
@@ -103,9 +91,9 @@ Also keep in mind you are unlikely to be able to profit from mining with a card 
 
 #### **Q:** Does this also work with NVIDIA cards?
 **A:** Shh! Yes it does. I don't know enough about the NVIDIA drivers in Ubuntu yet to list a compatibility chart, but thanks to some testing by ich777 I have confirmation that **lnxd/phoenixminer:latest-20.45**, **lnxd/phoenixminer:latest-20.20** and **lnxd/phoenixminer:latest** work with a GTX1060 6GB. The same limitations with regards to VRAM apply as AMD cards, 4gb cards won't work.
-​
 
-​
+
+
 ## Additional PhoenixMiner Arguments
 ```
 Phoenix Miner 5.6d Linux/gcc - Release build
