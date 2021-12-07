@@ -142,6 +142,11 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV:-20.20}" ]]; then
         uninstall_amd_driver
         install_amd_driver "amdgpu-pro-21.30-1290604-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=rocr,legacy --headless"
         ;;
+        
+    21.40.1)
+        echo "---21.40.1 is not yet compatible with this container, putting container into sleep mode---" 
+        sleep infinity
+        ;;
     esac
 
 fi
