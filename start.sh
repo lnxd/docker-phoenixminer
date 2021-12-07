@@ -143,7 +143,7 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV:-20.20}" ]]; then
         install_amd_driver "amdgpu-pro-21.30-1290604-ubuntu-20.04.tar.xz" "https://drivers.amd.com/drivers/linux" "--opencl=rocr,legacy --headless"
         ;;
 
-    21.40.1
+    21.40.1)
         echo "---21.40.1 is not yet compatible with this container, putting container into sleep mode---" 
         sleep infinity
     esac
