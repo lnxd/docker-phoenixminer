@@ -25,7 +25,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     mkdir -p /home/docker;
 
 # Get Phoenix Miner
-ARG MINERV=5.7b
+ARG MINERV=5.9d
 ENV MINERV=$MINERV
 RUN curl "https://phoenixminer.info/downloads/PhoenixMiner_${MINERV}_Linux.tar.gz" -L -o "PhoenixMiner_${MINERV}_Linux.tar.gz"; \
     tar xvzf PhoenixMiner_${MINERV}_Linux.tar.gz -C /home/docker; \
