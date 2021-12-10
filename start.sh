@@ -47,6 +47,28 @@ install_amd_driver() {
     rm /etc/apt/apt.conf.d/90assumeyes
 }
 
+install_new_amd_driver() {
+    AMD_DRIVER=$1
+    AMD_DRIVER_URL=$2
+    echo "---Installing AMD drivers, please wait!---"
+    echo "---Downloading driver from "$AMD_DRIVER_URL/$AMD_DRIVER"---"
+    echo 'APT::Get::Assume-Yes "true";' >>/etc/apt/apt.conf.d/90assumeyes
+    mkdir -p /tmp/opencl-driver-amd
+    cd /tmp/opencl-driver-amd
+    #echo AMD_DRIVER is $AMD_DRIVER
+    curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER
+    echo "---Installing driver, this can take a very long time with no output. Please wait!---"
+    apt-get update
+    apt-get install -y initramfs-tools &>/dev/null
+    apt-get install ./$AMD_DRIVER
+    apt-get --fix-broken install -y &>/dev/null
+    cd /home/docker/
+    rm -rf /tmp/opencl-driver-amd
+    echo "---AMD Driver installation finished---"
+    INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
+    rm /etc/apt/apt.conf.d/90assumeyes
+}
+
 INSTALLED_DRIVERV=$(cd /home/docker/phoenixminer && ./PhoenixMiner -list | grep -m 1 "OpenCL driver version" | sed 's/OpenCL driver version: //g' | cut -c1-5)
 
 if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV:-20.20}" ]]; then
@@ -144,7 +166,8 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV:-20.20}" ]]; then
         ;;
         
     21.40.1)
-        echo "---21.40.1 is not yet compatible with this container, putting container into sleep mode---" 
+        uninstall_amd_driver
+        install_new_amd_driver "amdgpu-install_21.40.1.40501-1_all.deb" "https://repo.radeon.com/amdgpu-install/21.40.1/ubuntu/focal"
         sleep infinity
         ;;
     esac
