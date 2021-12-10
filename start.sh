@@ -60,7 +60,7 @@ install_new_amd_driver() {
     echo "---Installing driver, this can take a very long time with no output. Please wait!---"
     apt-get update
     apt-get install -y initramfs-tools &>/dev/null
-    apt-get install ./amdgpu-install-$AMD_DRIVER
+    apt-get install ./$AMD_DRIVER
     apt-get --fix-broken install -y &>/dev/null
     cd /home/docker/
     rm -rf /tmp/opencl-driver-amd
