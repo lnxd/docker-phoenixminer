@@ -58,9 +58,9 @@ install_new_amd_driver() {
     #echo AMD_DRIVER is $AMD_DRIVER
     curl --referer $AMD_DRIVER_URL -O $AMD_DRIVER_URL/$AMD_DRIVER
     echo "---Installing driver, this can take a very long time with no output. Please wait!---"
-    apt-get update
+    apt-get update &>/dev/null
     apt-get install -y initramfs-tools &>/dev/null
-    apt-get install -y ./$AMD_DRIVER
+    apt-get install -y ./$AMD_DRIVER &>/dev/null
     apt-get --fix-broken install -y &>/dev/null
     cd /home/docker/
     rm -rf /tmp/opencl-driver-amd
