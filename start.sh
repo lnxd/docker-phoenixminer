@@ -168,7 +168,6 @@ if [[ "${INSTALLED_DRIVERV}" != "${DRIVERV:-20.20}" ]]; then
     21.40.1)
         uninstall_amd_driver
         install_new_amd_driver "amdgpu-install_21.40.1.40501-1_all.deb" "https://repo.radeon.com/amdgpu-install/21.40.1/ubuntu/focal"
-        sleep infinity
         ;;
     esac
 
